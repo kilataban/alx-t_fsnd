@@ -1,11 +1,13 @@
-from flask import Flask
+from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://kilataban@localhost:5432/kilataban'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://kilataban@localhost:5432/template1'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
 db =SQLAlchemy(app)
+
+migrate = Migrate(app, db)
 
 class Person(db.Model):
     __tablename__ = 'persons'
